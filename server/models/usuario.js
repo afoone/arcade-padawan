@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({
     nickName: String,
     email: String,
     password: String,
-    score: [
+    /* score: [
         {
             scorePalabras: 0,
             game: 'Palabras'
@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
         }
         
 
-    ]
+    ] */
 })
 
 module.exports = mongoose.model('User', userSchema);
