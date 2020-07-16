@@ -68,7 +68,31 @@ const userController = {
             )
         }
         )
+    },
+
+    addScore: (req, res) => {
+        const { body, params } = req;
+        User.findById(params.id, (err, user) => {
+            if (err) {
+                return res.status(404)("<h1> Usuario no encontrado </h1>")
+            }
+            if (!user.score){
+                user.score = [];
+            }
+            user.score.push({
+                score: body.score,
+                game: body.game
+            })
+            user.save().then(
+                p => { return res.status(201).jsonp(p) }
+            ).catch(
+                err => { return res.status(500).jsonp({ msg: "error actualizando usuario" }) }
+            )
+        })
     }
+
+
+    
 
 
 }

@@ -22,4 +22,5 @@ app.get("/", (req, res) => { return res.send("Esperando compilación") });
 
 app.use("/api/user/", userRouter);
 
+
 module.exports = app;
