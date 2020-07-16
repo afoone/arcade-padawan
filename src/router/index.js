@@ -1,4 +1,3 @@
-import { userSetter } from 'core-js/fn/symbol'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
@@ -21,7 +20,7 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/user',
+    path: '/usuario',
     name: 'Usuario',
     component: Usuario
   }
