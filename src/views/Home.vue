@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" >
     <h1>Arcade Padawan</h1>
     <img alt="Vue logo" src="../assets/img/arcade.png" />
     <h1>Tu universo gamer</h1>
@@ -20,4 +20,5 @@ h1 {
   color: chartreuse;
   font-size: 600%;
 }
+
 </style>
