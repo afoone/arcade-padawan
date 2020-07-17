@@ -21,7 +21,7 @@ Vue.use(VueRouter)
   },
   {
     path: '/usuario',
-    name: 'Usuario',
+    name: 'UserList',
     component: Usuario
   }
 ]
