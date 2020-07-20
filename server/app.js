@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 
 const userRouter = require('./routes/user');
-
+const loginRouter = require('./routes/login')
 app.use(express.json());
 
 // para desarrollo
@@ -21,5 +21,7 @@ app.use(cors({
 app.get("/", (req, res) => { return res.send("Esperando compilación") });
 
 app.use("/api/user/", userRouter);
+app.use("/api/login/", loginRouter);
+
 
 module.exports = app;

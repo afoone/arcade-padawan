@@ -1,18 +1,32 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="home fondo" :style="{'background-image':'url(https://www.nationalgeographic.com.es/medio/2018/04/24/la-nebulosa-de-la-vela_95bb392a.jpg)'}">
+    <h1>Arcade Padawan</h1>
+    <img alt="Vue logo" src="../assets/img/arcade.png" />
+    <h1>Tu universo gamer</h1>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  name: "Home",
+  data() {
+    return {
+      /* image: {backgroundImage: "url(./assets/img/bk.jpg)"} */
+    }
+  },
+  components: {}
+};
 </script>
+
+<style >
+h1 {
+  color: chartreuse;
+  font-size: 600%;
+}
+.fondo {
+  background-size: cover;
+}
+
+</style>
