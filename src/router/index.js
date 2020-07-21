@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> cb6773ca5d72e4b12b8520827dc51eabeeae5f77
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
