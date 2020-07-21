@@ -20,7 +20,7 @@ export default {
 };
 </script>
 
-<style >
+<style scoped>
 h1 {
   color: chartreuse;
   font-size: 600%;

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Usuario from '../views/Usuario.vue'
+import Login from '../components/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -23,7 +24,13 @@ Vue.use(VueRouter)
     path: '/usuario',
     name: 'UserList',
     component: Usuario
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
+
 ]
 
 const router = new VueRouter({
