@@ -1,13 +1,20 @@
 <template>
-  <div>
-    <!-- <h1>{{ Usuario }}</h1> -->
-    <label for="Nombre: ">{{this.nombre}}</label>
-    <br>
-    <!-- <label for="Apellidos:">{{this.apellidos}}</label> -->
-    <label for="Nick:">{{this.nickName}}</label
-    ><br>
-    <label for="Passwd:" type="password">{{this.password}}</label>
+<div class="container">
+ <div class="form-group">
+    <label for="Nombre Usuario">Nombre:  </label>
+    <input type="text" class="form-control" id="nombre"  placeholder="Entre Nombre" v-model="nombre">
   </div>
+  <div class="form-group">
+    <label for="NickName">NickName:  </label>
+    <input type="text" class="form-control" id="nick"  placeholder="Entre NickName" v-model="nickName">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password: </label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
 </template>
 
 <script>
