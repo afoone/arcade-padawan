@@ -1,4 +1,3 @@
-
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
@@ -25,8 +24,8 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/user',
-    name: 'Usuario',
+    path: '/usuario',
+    name: 'UserList',
     component: Usuario
   },
   {

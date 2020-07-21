@@ -1,17 +1,20 @@
 <template>
     <div>
-      <User msg="Hola, soy un SUPER USUARIO  Me llamo Groot"/>
-        <h2> Vista Usuarios</h2>
+      <Usuario/>
+      
+      <!-- <User msg="Hola, soy un SUPER USUARIO  Me llamo Groot"/>
+        <h2> Vista Usuarios</h2> -->
     </div>
+    
 </template>
 <script>
 // @ is an alias to /src
-import User from '@/components/Usuario.vue'
+import Usuario from '@/components/Usuario.vue'
 
 export default {
-  name: 'User',
+  name: 'UserList',
   components: {
-    User
+    Usuario
   }
 }
 </script>
