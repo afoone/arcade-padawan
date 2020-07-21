@@ -4,6 +4,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Usuario from '../views/Usuario.vue'
 import Login from '../components/Login.vue'
+import Ahorcado from '../components/juegos/Ahorcado.vue'
+import Juego from '../components/juegos/Juego.vue'
+import MemoryGame from '../components/juegos/MemoryGame'
 
 Vue.use(VueRouter)
 
@@ -30,6 +33,21 @@ Vue.use(VueRouter)
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/juegos/palabras',
+    name: 'Juego',
+    component: Juego
+  },
+  {
+    path: '/juegos/ahorcado',
+    name: 'Ahorcado',
+    component: Ahorcado
+  },
+  {
+    path: '/juegos/memory',
+    name: 'MemoryGame',
+    component: MemoryGame
   }
 
 ]
