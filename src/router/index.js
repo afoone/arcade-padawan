@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Usuario from '../views/Usuario.vue'
+import ListaUsuario from '../components/ListaUsuario.vue'
 import Login from '../components/Login.vue'
 
 Vue.use(VueRouter)
@@ -29,6 +30,11 @@ Vue.use(VueRouter)
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/listaUsuario',
+    name: 'listadoUsers',
+    component: ListaUsuario
   }
 
 ]
