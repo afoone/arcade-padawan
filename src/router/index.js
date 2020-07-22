@@ -37,11 +37,12 @@ Vue.use(VueRouter)
   {
     path: '/listaUsuario',
     name: 'listadoUsers',
-    component: ListaUsuario
-    path: '/juegos/palabras',
-    name: 'Juego',
-    component: Juego
-  },
+    component: ListaUsuario,
+   },
+   { path: '/juegos/palabras',
+   name: 'Juego',
+   component: Juego
+ },
   {
     path: '/juegos/ahorcado',
     name: 'Ahorcado',
