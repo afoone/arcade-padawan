@@ -22,10 +22,12 @@
 <script>
 export default {
 
-    name: 'Login'
-    
+    name: 'Login',
 
+    
   }
+  
+  
 
 </script>
 
@@ -38,6 +40,7 @@ export default {
         font-weight: bolder;
         margin: 50px 0px 20px 0px;
         width: 100%;
+        
         
 
     }
