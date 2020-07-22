@@ -6,7 +6,7 @@ import Login from '../components/Login.vue'
 import Ahorcado from '../components/juegos/Ahorcado.vue'
 import Juego from '../components/juegos/Juego.vue'
 import MemoryGame from '../components/juegos/MemoryGame'
-
+import Records from '../views/Records.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -47,6 +47,11 @@ Vue.use(VueRouter)
     path: '/juegos/memory',
     name: 'MemoryGame',
     component: MemoryGame
+  },
+  {
+    path: '/records',
+    name: 'Records',
+    component: Records
   }
 
 ]
