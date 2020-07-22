@@ -13,7 +13,18 @@
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
   </div>
   
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Grabar</button>
+  
+  <div class="enlaces">
+    <a href="#">Borrar Usuario</a>
+    <p>Introduzca usuario a buscar:</p>
+    <input type="text" class="form-control" id="searchByName"  placeholder="Entre Nombre" v-model="nombre">
+    <button type="submit" class="btn btn-primary">Buscar</button>
+  
+
+
+  </div>
+
 </div>
 </template>
 
@@ -24,7 +35,6 @@ export default {
   data() {
     return {
       nombre: String,
-      apellidos: String,
       nickName: String,
       password: String
     };
@@ -34,6 +44,9 @@ export default {
     msg: String
   },
   methods: {
+    NextUser(){
+
+    }
     
 
       
@@ -45,7 +58,7 @@ export default {
    
    axios.get('http://localhost:4000/api/user').then(
         res =>{
-          // console.log(res.data)
+           console.log(res.data)
             this.nombre = res.data[0].name;
             this.nickName = res.data[0].nickName;
             this.password = res.data[0].password;
@@ -64,4 +77,5 @@ export default {
 </script>
 
 <style>
+.enlaces a{display: block;}
 </style>

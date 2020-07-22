@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Usuario from '../views/Usuario.vue'
+import ListaUsuario from '../components/ListaUsuario.vue'
 import Login from '../components/Login.vue'
 import Ahorcado from '../components/juegos/Ahorcado.vue'
 import Juego from '../components/juegos/Juego.vue'
@@ -34,10 +35,14 @@ Vue.use(VueRouter)
     component: Login
   },
   {
-    path: '/juegos/palabras',
-    name: 'Juego',
-    component: Juego
-  },
+    path: '/listaUsuario',
+    name: 'listadoUsers',
+    component: ListaUsuario,
+   },
+   { path: '/juegos/palabras',
+   name: 'Juego',
+   component: Juego
+ },
   {
     path: '/juegos/ahorcado',
     name: 'Ahorcado',
