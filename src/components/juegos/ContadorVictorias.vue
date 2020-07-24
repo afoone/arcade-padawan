@@ -9,6 +9,7 @@
 
 <script>
 import bus from "../../bus";
+
 export default {
   data() {
     return {
@@ -19,6 +20,7 @@ export default {
   created() {
     bus.$on("PalabraCompletada", () => {
       this.victorias++;
+
     });
     bus.$on("Ahorcado", () => {
       this.derrotas++;
