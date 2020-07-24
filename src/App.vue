@@ -5,7 +5,8 @@
       <router-link to="/acerca-de">About</router-link>|
       <router-link to="/usuario">Usuario</router-link>|
       <router-link to="/login">Login</router-link>|
-      <router-link to="/records">Records</router-link>
+      <router-link to="/records">Records</router-link>|
+      <router-link to="/listaUsuario">Lista Usuarios</router-link>
     </div>
     <router-view />
   </div>

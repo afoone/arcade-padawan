@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Usuario/>
     <div>
       <h1>Record de puntuaciones </h1>
     </div>
@@ -17,13 +18,13 @@
   <tbody>
     <tr   v-for="(item,index) in usuarios" :key="index" >
       <th scope="row">
-        <td>{{index}}</td>
+        <td>{{index+1}}</td>
       </th>
       <th scope="row">
         <td>{{item.nickName}}</td>
       </th>
       <th scope="row">
-        <td>{{index}}</td>
+        <td>{{item.score}}</td>
       </th>
       <th scope="row">
         <td>{{index}}</td>
