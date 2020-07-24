@@ -13,17 +13,7 @@
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
   </div>
   
-  <button type="submit" class="btn btn-primary">Grabar</button>
-  
-  <div class="enlaces">
-    <a href="#">Borrar Usuario</a>
-    <p>Introduzca usuario a buscar:</p>
-    <input type="text" class="form-control" id="searchByName"  placeholder="Entre Nombre" v-model="nombre">
-    <button type="submit" class="btn btn-primary">Buscar</button>
-  
-
-
-  </div>
+  <button type="submit" class="btn btn-primary" v-on="grabar">Grabar</button>
 
 </div>
 </template>
@@ -39,17 +29,10 @@ export default {
       password: String
     };
   },
-
-  props: {
-    msg: String
-  },
+  props: {  },
   methods: {
-    NextUser(){
-
-    }
     
-
-      
+       
     }
 
    ,
@@ -59,18 +42,33 @@ export default {
    axios.get('http://localhost:4000/api/user').then(
         res =>{
            console.log(res.data)
-            this.nombre = res.data[0].name;
-            this.nickName = res.data[0].nickName;
-            this.password = res.data[0].password;
+  //           this.nombre = res.data[0].name;
+  //           this.nickName = res.data[0].nickName;
+  //           this.password = res.data[0].password;
           }
 
-      )
-
-     
+      )   
 
   },
+  grabar(){
+    const user={
+    name : this.nombre,
+  nickName: this.nickName,
+  password: this.password
+
+    }
+  axios.post('http://localhost:4000/api/user',user).then(
+    res =>{
+      console.log(res)
+    }
+  )
+
+
+  },
+
   computed:{
 
+    
   }
 };
 
