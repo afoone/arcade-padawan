@@ -3,7 +3,7 @@
     class="home fondo"
     :style="{'background-image':'url(https://www.nationalgeographic.com.es/medio/2018/04/24/la-nebulosa-de-la-vela_95bb392a.jpg)'}"
   >
-    <h1>Arcade Padawan Tu universo gamer</h1>
+    <h1>Arcade Padawan Tu Universo GaMeR</h1>
     <div class="listaJuegos">
       <div>
         <ul>

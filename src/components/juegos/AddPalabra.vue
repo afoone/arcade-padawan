@@ -22,6 +22,7 @@ export default {
   props: ["palabras", "estado"],
   methods: {
     addPalabra() {
+      console.log(this.palabra);
       if (this.palabras.length > 0) {
         const ultimaPalabra = this.palabras[this.palabras.length - 1];
         if (
