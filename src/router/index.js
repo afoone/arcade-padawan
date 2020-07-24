@@ -58,7 +58,11 @@ Vue.use(VueRouter)
     path: '/records',
     name: 'Records',
     component: Records
-  }
+  },{
+    path: '/usuario/editar/:id',
+    name: 'EditUser',
+    component: Usuario
+  },
 
 ]
 

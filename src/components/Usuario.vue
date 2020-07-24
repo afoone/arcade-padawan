@@ -41,6 +41,7 @@ export default {
   name: "Usuario",
   data() {
     return {
+      id: null,
       nombre: "",
       nickName: "",
       password: "",
@@ -54,21 +55,28 @@ export default {
         nickName: this.nickName,
         password: this.password,
       };
-      axios.post("http://localhost:4000/api/user", user).then((res) => {
-        console.log(res);
-      });
-    },
-
-    mounted() {
-      axios.get("http://localhost:4000/api/user").then((res) => {
-        console.log(res.data);
-        //           this.nombre = res.data[0].name;
-        //           this.nickName = res.data[0].nickName;
-        //           this.password = res.data[0].password;
-      });
+      if (this.id == null) {
+        axios.post("http://localhost:4000/api/user", user).then((res) => {
+          console.log(res);
+        });
+      } else {
+        axios.put("http://localhost:4000/api/user/"+this.id, user).then((res) => {
+          console.log("updateado", res);
+        });
+      }
     },
   },
-
+  mounted() {
+    this.id = this.$route.params.id;
+    if (this.id) {
+      axios.get("http://localhost:4000/api/user/" + this.id).then((res) => {
+        console.log(res.data);
+        this.nombre = res.data.name;
+        this.nickName = res.data.nickName;
+        this.password = res.data.password;
+      });
+    }
+  },
   computed: {},
 };
 </script>
