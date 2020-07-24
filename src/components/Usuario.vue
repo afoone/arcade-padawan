@@ -41,9 +41,9 @@ export default {
   name: "Usuario",
   data() {
     return {
-      nombre: String,
-      nickName: String,
-      password: String,
+      nombre: "",
+      nickName: "",
+      password: "",
     };
   },
   props: {},

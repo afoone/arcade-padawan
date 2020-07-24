@@ -1,41 +1,48 @@
 <template>
   <div>
-    <Usuario/>
+    <Usuario />
     <div>
-      <h1>Record de puntuaciones </h1>
+      <h1>Record de puntuaciones</h1>
     </div>
     <div class="container">
       <table class="table table-striped table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Posición</th>
-      <th scope="col">Usuario</th>
-      <th scope="col">Ahorcado</th>
-      <th scope="col">Memory</th>
-      <th scope="col">Palabra</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr   v-for="(item,index) in usuarios" :key="index" >
-      <th scope="row">
-        <td>{{index+1}}</td>
-      </th>
-      <th scope="row">
-        <td>{{item.nickName}}</td>
-      </th>
-      <th scope="row">
-        <td>{{item.score}}</td>
-      </th>
-      <th scope="row">
-        <td>{{index}}</td>
-      </th>
-      <th scope="row">
-        <td>{{index}}</td>
-      </th>
-    </tr>
-
-  </tbody>
-</table>
+        <thead>
+          <tr>
+            <th scope="col">Posición</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Ahorcado</th>
+            <th scope="col">Memory</th>
+            <th scope="col">Palabra</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in usuarios" :key="index">
+            <th scope="row">{{index+1}}</th>
+            <th scope="row">{{item.nickName}}</th>
+            <th scope="row">
+              {{
+              item.score.reduce( (acc, act) => {
+              if (act.game === "Memory" && act.score > acc) {
+              return act.score} else {return acc;};}, 0)
+              }}
+            </th>
+            <th scope="row">
+              {{
+              item.score.reduce( (acc, act) => {
+              if (act.game === "Ahorcado" && act.score > acc) {
+              return act.score} else {return acc;};}, 0)
+              }}
+            </th>
+            <th scope="row">
+              {{
+              item.score.reduce( (acc, act) => {
+              if (act.game === "Palabras" && act.score > acc) {
+              return act.score} else {return acc;};}, 0)
+              }}
+            </th>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -47,20 +54,18 @@ export default {
   name: "Records",
   data() {
     return {
-      usuarios: []
+      usuarios: [],
     };
   },
   components: {},
-  props:{},
-  methods:{},
+  props: {},
+  methods: {},
   mounted() {
-    axios.get("http://localhost:4000/api/user").then(res => {
+    axios.get("http://localhost:4000/api/user").then((res) => {
       this.usuarios = res.data;
       console.log(this.usuarios);
     });
-  }
-
-
+  },
 };
 </script>
 
@@ -72,5 +77,4 @@ h1 {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
-
 </style>
