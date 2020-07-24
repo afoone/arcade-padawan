@@ -2,6 +2,7 @@
   <div class="container">
 
     <div class="card" v-for=" (item,index)  in usuarios" :key="index" >
+      
 
       <div class="card-header">Usuario</div>
       <div class="card-body">
@@ -9,7 +10,8 @@
         <h5 class="card-title">{{item.name}}</h5>
         <p class="card-text">{{item.nickName}}</p>
         <!-- <p class="card-text">{{item.password}}</p> -->
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <router-link v-bind:to="`usuario/editar/${item._id}`"> Editar usuario</router-link>
+        
       </div>
     </div>
   </div>
@@ -22,6 +24,7 @@ export default {
   name: "ListaUsuarios",
   data() {
     return {
+      id:"",
       usuarios: []
     };
   },
@@ -32,7 +35,9 @@ export default {
     axios.get("http://localhost:4000/api/user").then(res => {
       //sobre un array puedo volcar res.data
       this.usuarios = res.data;
-      console.log(this.usuarios);
+      
+      // console.log(this.usuarios);
+      // console.log(this.usuarios[1]._id)
     });
   }
 };
