@@ -7,7 +7,7 @@ const loginController = {
         const { body } = req;
         console.log("body", body);
 
-        User.findOne({ name: body.name }, (err, user) => {
+        User.findOne({ name: body.user }, (err, user) => {
             console.log(user);
             if (err || !user || user.password !== body.password) {
                 return res.status(401).send("Usuario no encontrado")
@@ -18,7 +18,8 @@ const loginController = {
                 return res.status(200).jsonp({
                     token,
                     name:user.name,
-                    nickName:user.nickName
+                    nickName:user.nickName,
+                    id:user.id
                 })
             }
         })

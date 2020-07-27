@@ -16,7 +16,7 @@ import axios from 'axios';
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1" v-model="password" placeholder="Contraseña"/>
         </div>
-        <button type="submit" class="btn btn-secondary btn-lg" v-on:click="onSubmit()">Login</button>
+        <button type="submit" class="btn btn-secondary btn-lg" v-on:click.prevent="onSubmit()">Login</button>
       </form>
     </div>
   </div>

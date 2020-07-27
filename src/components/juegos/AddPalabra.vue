@@ -1,3 +1,4 @@
+import axios from 'axios';
 <template>
   <div class="input-group mb-3">
     <input
@@ -13,6 +14,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+
 export default {
   data() {
     return {
@@ -32,6 +36,12 @@ export default {
           console.log("changing error state");
           this.estado.error =
             "Has fallado. Puntuación total: " + this.palabras.length;
+          console.log(localStorage.id);
+          axios.put("http://localhost:4000/" + localStorage.id
+            +"/addScore", { 
+                score: this.palabras.length, 
+                game: "Palabra"
+              })
           this.estado.comenzado = false;
           this.palabras.length = 0;
           return;

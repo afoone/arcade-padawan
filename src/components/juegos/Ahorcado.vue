@@ -5,6 +5,9 @@
     <vidas />
     <palabra :palabra="palabra" />
     <letras />
+    <div clas="container">
+      <button type="button" class="btn btn-outline-info" v-on:click="subirRecord()">Subir Record</button>
+    </div>
   </div>
 </template>
 
@@ -15,16 +18,17 @@ import Palabra from "./Palabra";
 import ContadorVictorias from "./ContadorVictorias";
 import axios from "axios";
 import bus from "../../bus";
+
 export default {
   components: {
     letras: Letras,
     palabra: Palabra,
     vidas: Vidas,
-    contadorVictorias: ContadorVictorias
+    contadorVictorias: ContadorVictorias,
   },
   data() {
     return {
-      palabra: ""
+      palabra: "",
     };
   },
   methods: {
@@ -32,12 +36,25 @@ export default {
       axios
         .get("https://www.aleatorios.com/random-words?dictionary=2&words=1")
         .then(
-          res =>
+          (res) =>
             (this.palabra = res.data.records[0]
               .normalize("NFD")
               .replace(/[\u0300-\u036f]/g, ""))
         );
-    }
+    },
+    subirRecord() {
+      bus.$on("Record", () => {
+        axios
+          .put(
+            "http://localhost:4000/api/user/" + localStorage.id,
+            +"/addScore",
+            { game: "Ahorcado", score: this.victorias }
+          )
+          .then((res) => {
+            console.log("updateado", res);
+          });
+      });
+    },
   },
   created() {
     this.getPalabra();
@@ -47,12 +64,18 @@ export default {
     bus.$on("PalabraCompletada", () => {
       this.getPalabra();
     });
-  }
+  },
 };
 </script>
 
 <style>
 .ahorcado-container {
   display: grid;
+}
+button {
+  margin-top: 2rem;
+  height: 2rem;
+  width: 13rem;
+  text-align: center;
 }
 </style>

@@ -5,14 +5,14 @@ const app = require('./app');
 
 const jwt = require("jsonwebtoken");
 const authmw = require('./authmw');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 const cors = require('cors');
 
 app.use(cors());
 
 const salt = "aoidufhqwriebfncvbjhb32564h534i7890y1234irhaeiouf";
 
-const hashedPassword = bcrypt.hashSync()
+//const hashedPassword = bcrypt.hashSync()
 
 mongoose.connect('mongodb://localhost:27017/arcade').then(
     () => {
