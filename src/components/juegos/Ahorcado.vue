@@ -24,11 +24,11 @@ export default {
     letras: Letras,
     palabra: Palabra,
     vidas: Vidas,
-    contadorVictorias: ContadorVictorias,
+    contadorVictorias: ContadorVictorias
   },
   data() {
     return {
-      palabra: "",
+      palabra: ""
     };
   },
   methods: {
@@ -36,7 +36,7 @@ export default {
       axios
         .get("https://www.aleatorios.com/random-words?dictionary=2&words=1")
         .then(
-          (res) =>
+          res =>
             (this.palabra = res.data.records[0]
               .normalize("NFD")
               .replace(/[\u0300-\u036f]/g, ""))
@@ -44,16 +44,17 @@ export default {
     },
     subirRecord() {
       console.log("this.victorias", this.victorias);
-        axios
-          .put(
-            "http://localhost:4000/api/user/" + localStorage.getItem("id"),
-            +"/addScore",
-            { game: "Ahorcado", score: this.victorias }
-          )
-          .then((res) => {
-            console.log("updateado", res);
-          });
-    },
+      axios
+        .put(
+          "http://localhost:4000/api/user/" +
+            localStorage.getItem("id") +
+            "/addScore",
+          { game: "Ahorcado", score: this.victorias }
+        )
+        .then(res => {
+          console.log("updateado", res);
+        });
+    }
   },
   created() {
     this.getPalabra();
@@ -63,7 +64,7 @@ export default {
     bus.$on("PalabraCompletada", () => {
       this.getPalabra();
     });
-  },
+  }
 };
 </script>
 
