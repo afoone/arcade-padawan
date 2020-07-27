@@ -43,17 +43,16 @@ export default {
         );
     },
     subirRecord() {
-      bus.$on("Record", () => {
+      console.log("this.victorias", this.victorias);
         axios
           .put(
-            "http://localhost:4000/api/user/" + localStorage.id,
+            "http://localhost:4000/api/user/" + localStorage.getItem("id"),
             +"/addScore",
             { game: "Ahorcado", score: this.victorias }
           )
           .then((res) => {
             console.log("updateado", res);
           });
-      });
     },
   },
   created() {

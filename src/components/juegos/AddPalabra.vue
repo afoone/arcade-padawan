@@ -37,10 +37,10 @@ export default {
           this.estado.error =
             "Has fallado. Puntuación total: " + this.palabras.length;
           console.log(localStorage.id);
-          axios.put("http://localhost:4000/" + localStorage.id
-            +"/addScore", { 
+          axios.put("http://localhost:4000/api/user/" + localStorage.getItem("id")
+            + "/addScore", { 
                 score: this.palabras.length, 
-                game: "Palabra"
+                game: "Palabras"
               })
           this.estado.comenzado = false;
           this.palabras.length = 0;

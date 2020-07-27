@@ -38,7 +38,12 @@ export default {
         onSubmit() {
           console.log(login());
           login(this.user, this.password).then(res=>
-          localStorage.setItem("token", res.data.token))
+          {
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("name", res.data.name);
+            localStorage.setItem("id", res.data.id);
+          }
+          )
         }
     }
   }

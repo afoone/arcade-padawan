@@ -19,7 +19,7 @@ const loginController = {
                     token,
                     name:user.name,
                     nickName:user.nickName,
-                    id:user.id
+                    id:user._id
                 })
             }
         })
