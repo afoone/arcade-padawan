@@ -17,8 +17,8 @@ app.use(cors({
 }));
 
 // para producción
-// app.use("/", express.static('server/dist'));
-app.get("/", (req, res) => { return res.send("Esperando compilación") });
+app.use("/", express.static('server/dist'));
+//app.get("/", (req, res) => { return res.send("Esperando compilación") });
 
 app.use("/api/user/", userRouter);
 app.use("/api/login/", loginRouter);
