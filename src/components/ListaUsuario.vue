@@ -11,7 +11,7 @@
         <p class="card-text">{{item.nickName}}</p>
         <!-- <p class="card-text">{{item.password}}</p> -->
         <router-link v-bind:to="`usuario/editar/${item._id}`"> Editar usuario</router-link>
-        
+        <button v-on:click.prevent="borraUser(item._id)" >Borrar usuario </button>
       </div>
     </div>
   </div>
@@ -29,7 +29,19 @@ export default {
     };
   },
   props: {},
-  methods: {},
+  methods: { borraUser(identificador){
+
+    const borro=confirm("Desea Borrar usuario")
+    console.log("respuesta: " + borro+ " " + identificador)
+    if(borro){
+      axios.delete("http://localhost:4000/api/user/"+identificador).then(
+        ()=>this.usuarios=this.usuarios.filter(i=> i._id!==identificador)
+        )
+
+    }
+
+
+  }},
 
   mounted() {
     axios.get("http://localhost:4000/api/user").then(res => {
@@ -40,6 +52,7 @@ export default {
       // console.log(this.usuarios[1]._id)
     });
   }
+ 
 };
 </script>
 

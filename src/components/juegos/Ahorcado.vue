@@ -1,7 +1,7 @@
 <template>
   <div class="ahorcado-container">
     <h1>Ahorcado</h1>
-    <contadorVictorias />
+    <contadorVictorias :record="victorias" />
     <vidas />
     <palabra :palabra="palabra" />
     <letras />
