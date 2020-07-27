@@ -1,41 +1,35 @@
 <template>
-  <div>
-    <template v-if="terminado">
-      <h1>ENHORABUENA</h1>
-      <button v-on:click="createBoard">Jugar otra vez</button>
-    </template>
-    <div>
-      <h3 v-if="turnos">Turnos: {{turnos}}</h3>
-    </div>
-    <div class="memory-game">
-      <div class="board" :style="'grid-template-columns: repeat(' + columns + ', 200px)'">
-        <div class="card" v-for="(item, index) in cards" :key="index" v-on:click="onClick(item)">
-          <img :src="item.image" v-if="mostrar(item)" v-on:click.stop />
-        </div>
+  <div class="memory-game">
+    <h1>Memory Game</h1>
+    <buttons />
+    <puntuacion></puntuacion>
+    <h1 v-if="finished">Enhorabuena!!!!!</h1>
+    <div class="board " v-bind:style="{ gridTemplateColumns: gridTemplate}">
+      <div class="card" v-for="(item, index) in cards" :key="index" v-on:click="click(item)">
+        <img v-bind:src="item.image" v-if="mostrar(item)" height="100%" width="100%" v-on:click.stop />
       </div>
     </div>
   </div>
 </template>
-
 <script>
+import _ from "lodash";
 import axios from "axios";
 import { UNSPLASH_APPLICATION, UNSPLASH_SECRET } from "../config/unsplash";
-import _ from "lodash";
-
+import bus from "../../bus";
+import puntuacion from "./Puntuacion";
+import Buttons from "./Buttons";
 
 export default {
+  components: {
+    puntuacion,
+    buttons: Buttons
+  },
   data() {
     return {
       cards: [],
-      element1: null,
-      element2: null,
-      turnos: 0
+      selectedOne: null,
+      selectedTwo: null
     };
-  },
-  watch: {
-    columns: function() {
-      this.createBoard();
-    }
   },
   props: {
     columns: {
@@ -45,83 +39,79 @@ export default {
   },
   computed: {
     elements() {
-      return this.columns ** 2 % 2 === 1
-        ? (this.columns * (this.columns - 1)) / 2
-        : this.columns ** 2 / 2;
+      return this.columns ** 2 / 2;
     },
-    terminado() {
+    finished() {
       return this.cards.reduce((acc, act) => acc && act.discovered, true);
+
+    },
+    //grid-template-columns: 3rem 3rem 3rem 3rem;
+    gridTemplate() {
+      return "repeat(" + this.columns + ", 3rem)";
     }
   },
   methods: {
+    click(item) {
+      if (!this.selectedOne) {
+        this.selectedOne = item;
+      } else if (!this.selectedTwo) {
+        bus.$emit("Movimiento", this.selectedOne.image);
+        this.selectedTwo = item;
+        if (this.selectedOne.image === this.selectedTwo.image) {
+          this.selectedOne.discovered = true;
+          this.selectedTwo.discovered = true;
+        }
+      } else {
+        this.selectedOne = item;
+        this.selectedTwo = null;
+      }
+    
+    },
+    mostrar(item) {
+      return (
+        item.discovered ||
+        item === this.selectedOne ||
+        item === this.selectedTwo
+      );
+    },
     async createBoard() {
       let res = await axios.get(
         `https://api.unsplash.com/photos/random?count=${this.elements}&orientation=squarish&client_id=${UNSPLASH_APPLICATION}&client_secret=${UNSPLASH_SECRET}`
       );
-      console.log(res.data);
-
       this.cards = [];
-      res.data.forEach(i => {
+      for (let i = 0; i < this.elements; i++) {
         this.cards.push({
-          image: i.urls.thumb,
+          image: res.data[i].urls.thumb,
           discovered: false
         });
         this.cards.push({
-          image: i.urls.thumb,
+          image: res.data[i].urls.thumb,
           discovered: false
         });
-      });
-      this.cards = _.shuffle(this.cards);
-      this.turnos = 0;
-    },
-    mostrar(item) {
-      return (
-        item.discovered || item === this.element1 || item === this.element2
-      );
-    },
-    onClick(item) {
-      if (!this.element1) {
-        this.element1 = item;
-      } else {
-        if (!this.element2) {
-          this.element2 = item;
-          if (this.element1.image === this.element2.image) {
-            this.element1.discovered = true;
-            this.element2.discovered = true;
-          }
-          this.turnos++;
-        } else {
-          this.element1 = item;
-          this.element2 = null;
-        }
       }
+      this.cards = _.shuffle(this.cards);
     }
   },
   created() {
     this.createBoard();
+    bus.$on("NewGame", () => this.createBoard());
   }
 };
 </script>
 
 <style scoped>
-.card {
-  width: 200px;
-  height: 200px;
-  background-color: orangered;
-}
-
 .board {
   display: grid;
-  gap: 20px;
+  grid-template-columns: repeat(4, 2rem);
+  gap: 1rem;
+  width: 15rem;
+  margin: 2rem;
+  padding-left: 40%;
 }
 
-.memory-game {
-  display: flex;
-  justify-content: center;
-}
-
-.card img {
-  width: 100%;
-  height: 100%;
+.card {
+  width: 3rem;
+  height: 3rem;
+  background-color: chocolate;
 }
 </style>

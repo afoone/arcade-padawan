@@ -15,12 +15,6 @@ export default {
       derrotas: 0,
     };
   },
-  methods: {
-    record() {
-      bus.$emit("Record", this.victorias);
-      
-    },
-  },
   created() {
     bus.$on("PalabraCompletada", () => {
       this.victorias++;

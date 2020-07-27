@@ -28,7 +28,8 @@ export default {
   },
   data() {
     return {
-      palabra: ""
+      palabra: "",
+      puntuacion: 0
     };
   },
   methods: {
@@ -43,13 +44,13 @@ export default {
         );
     },
     subirRecord() {
-      console.log("this.victorias", this.victorias);
+      console.log(this.puntuacion);
       axios
         .put(
           "http://localhost:4000/api/user/" +
             localStorage.getItem("id") +
             "/addScore",
-          { game: "Ahorcado", score: this.victorias }
+          { game: "Ahorcado", score: this.puntuacion}
         )
         .then(res => {
           console.log("updateado", res);
