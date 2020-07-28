@@ -62,6 +62,7 @@ export default {
   props: {},
   methods: {
     ordenaMemory() {
+      this.memoryOrder = this.memoryOrder * -1;
       this.usuarios = this.usuarios.sort((a, b) => {
         const memoryA = a.score.reduce((acc, act) => {
           if (act.game === "Memory" && act.score > acc) {
@@ -78,12 +79,11 @@ export default {
             return acc;
           }
         }, 0);
-
-        //this.memoryOrder = this.memoryOrder * -1;
         return (memoryA - memoryB) * this.memoryOrder;
       });
     },
     ordenaPalabra() {
+      this.memoryOrder = this.memoryOrder * -1;
       this.usuarios = this.usuarios.sort((a, b) => {
         const palabraA = a.score.reduce((acc, act) => {
           if (act.game === "Palabras" && act.score > acc) {
@@ -101,10 +101,11 @@ export default {
           }
         }, 0);
 
-        return palabraB - palabraA;
+        return (palabraA - palabraB) * this.palabraOrder;
       });
     },
     ordenaAhorcado() {
+      this.memoryOrder = this.memoryOrder * -1;
       this.usuarios = this.usuarios.sort((a, b) => {
         const ahorcadoA = a.score.reduce((acc, act) => {
           if (act.game === "Ahorcado" && act.score > acc) {
@@ -122,7 +123,7 @@ export default {
           }
         }, 0);
 
-        return ahorcadoB - ahorcadoA;
+        return (ahorcadoA - ahorcadoB) * this.ahorcadoOrder;
       });
     },
   },
