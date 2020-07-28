@@ -30,7 +30,7 @@ export default {
     return {
       palabra: "",
       puntuacion: 0,
-      victoriasRecord: 0,
+      victorias: 0,
     };
   },
   methods: {
@@ -45,13 +45,13 @@ export default {
         );
     },
     subirRecord() {
-      console.log(this.victoriasRecord);
+      console.log(this.victorias);
       axios
         .put(
           "http://localhost:4000/api/user/" +
             localStorage.getItem("id") +
             "/addScore",
-          { game: "Ahorcado", score: this.victoriasRecord }
+          { game: "Ahorcado", score: this.victorias }
         )
         .then((res) => {
           console.log("updateado", res);
@@ -65,7 +65,7 @@ export default {
     });
     bus.$on("PalabraCompletada", () => {
       this.getPalabra();
-      this.victoriasRecord++;
+      this.victorias++;
     });
   },
 };
