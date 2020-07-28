@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const userRouter = require('./routes/user');
 const loginRouter = require('./routes/login')
+const palabraRouter = require('./routes/palabras')
 app.use(express.json());
 
 // para desarrollo
@@ -22,6 +23,8 @@ app.use("/", express.static('server/dist'));
 
 app.use("/api/user/", userRouter);
 app.use("/api/login/", loginRouter);
+app.use("/api/palabra/", palabraRouter)
+
 
 
 module.exports = app;
