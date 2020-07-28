@@ -101,7 +101,7 @@ export default {
           }
         }, 0);
 
-        return (palabraA - palabraB) * this.palabraOrder;
+        return (palabraA - palabraB) * this.memoryOrder;
       });
     },
     ordenaAhorcado() {
@@ -123,7 +123,7 @@ export default {
           }
         }, 0);
 
-        return (ahorcadoA - ahorcadoB) * this.ahorcadoOrder;
+        return (ahorcadoA - ahorcadoB) * this.memoryOrder;
       });
     }
   },
