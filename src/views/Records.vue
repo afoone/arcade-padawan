@@ -11,8 +11,8 @@
             <th scope="col">Posición</th>
             <th scope="col">Usuario</th>
             <th scope="col" v-on:click="ordenaMemory()">Memory</th>
-            <th scope="col">Ahorcado</th>
-            <th scope="col">Palabra</th>
+            <th scope="col" v-on:click="ordenaAhorcado()">Ahorcado</th>
+            <th scope="col" v-on:click="ordenaPalabra()">Palabra</th>
           </tr>
         </thead>
         <tbody>
@@ -79,7 +79,7 @@ export default {
           }
         }, 0);
 
-        this.memoryOrder = this.memoryOrder * -1;
+        //this.memoryOrder = this.memoryOrder * -1;
         return (memoryA - memoryB) * this.memoryOrder;
       });
     },
@@ -101,10 +101,30 @@ export default {
           }
         }, 0);
 
-        return palabraB - palabraA;
+        return palabraA - palabraB;
       });
     },
-    ordenaAhorcado() {},
+    ordenaAhorcado() {
+      this.usuarios = this.usuarios.sort((a, b) => {
+        const ahorcadoA = a.score.reduce((acc, act) => {
+          if (act.game === "Memory" && act.score > acc) {
+            return act.score;
+          } else {
+            return acc;
+          }
+        }, 0);
+
+        const ahorcadoB = b.score.reduce((acc, act) => {
+          if (act.game === "Memory" && act.score > acc) {
+            return act.score;
+          } else {
+            return acc;
+          }
+        }, 0);
+
+        return ahorcadoA - ahorcadoB;
+      });
+    },
   },
   mounted() {
     axios.get("http://localhost:4000/api/user").then((res) => {
