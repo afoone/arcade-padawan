@@ -62,6 +62,7 @@ export default {
   props: {},
   methods: {
     ordenaMemory() {
+      this.memoryOrder = this.memoryOrder * -1;
       this.usuarios = this.usuarios.sort((a, b) => {
         const memoryA = a.score.reduce((acc, act) => {
           if (act.game === "Memory" && act.score > acc) {
@@ -78,8 +79,7 @@ export default {
             return acc;
           }
         }, 0);
-
-        this.memoryOrder = this.memoryOrder * -1;
+        console.log("memoryOrder", memoryA, memoryB, this.memoryOrder);
         return (memoryA - memoryB) * this.memoryOrder;
       });
     },
@@ -104,14 +104,14 @@ export default {
         return palabraB - palabraA;
       });
     },
-    ordenaAhorcado() {},
+    ordenaAhorcado() {}
   },
   mounted() {
-    axios.get("http://localhost:4000/api/user").then((res) => {
+    axios.get("http://localhost:4000/api/user").then(res => {
       this.usuarios = res.data;
       console.log(this.usuarios);
     });
-  },
+  }
 };
 </script>
 
