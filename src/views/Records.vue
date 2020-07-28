@@ -86,7 +86,7 @@ export default {
     ordenaPalabra() {
       this.usuarios = this.usuarios.sort((a, b) => {
         const palabraA = a.score.reduce((acc, act) => {
-          if (act.game === "Memory" && act.score > acc) {
+          if (act.game === "Palabras" && act.score > acc) {
             return act.score;
           } else {
             return acc;
@@ -94,20 +94,20 @@ export default {
         }, 0);
 
         const palabraB = b.score.reduce((acc, act) => {
-          if (act.game === "Memory" && act.score > acc) {
+          if (act.game === "Palabras" && act.score > acc) {
             return act.score;
           } else {
             return acc;
           }
         }, 0);
 
-        return palabraA - palabraB;
+        return palabraB - palabraA;
       });
     },
     ordenaAhorcado() {
       this.usuarios = this.usuarios.sort((a, b) => {
         const ahorcadoA = a.score.reduce((acc, act) => {
-          if (act.game === "Memory" && act.score > acc) {
+          if (act.game === "Ahorcado" && act.score > acc) {
             return act.score;
           } else {
             return acc;
@@ -115,14 +115,14 @@ export default {
         }, 0);
 
         const ahorcadoB = b.score.reduce((acc, act) => {
-          if (act.game === "Memory" && act.score > acc) {
+          if (act.game === "Ahorcado" && act.score > acc) {
             return act.score;
           } else {
             return acc;
           }
         }, 0);
 
-        return ahorcadoA - ahorcadoB;
+        return ahorcadoB - ahorcadoA;
       });
     },
   },
