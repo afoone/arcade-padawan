@@ -36,7 +36,7 @@ const userController = {
 
     updateUser: (req, res) => {
         const { body, params } = req;
-        User.findById(params.id, (err, user) => {
+        User.findById(params.id, async (err, user) => {
             if (err) {
                 return res.status(404)("<h1> Usuario no encontrado </h1>")
             }
@@ -44,11 +44,10 @@ const userController = {
             user.nickName = body.nickName;
             user.email = body.email;
             user.password = body.password;
-            user.save().then(
-                p => { return res.status(201).jsonp(p) }
-            ).catch(
-                err => { return res.status(500).jsonp({ msg: "error actualizando usuario" }) }
+            const p = await user.save().catch(
+                () => { return res.status(500).jsonp({ msg: "error actualizando usuario" }) }
             )
+            return res.status(201).jsonp(p);
         })
     },
 
@@ -76,7 +75,7 @@ const userController = {
             if (err) {
                 return res.status(404)("<h1> Usuario no encontrado </h1>")
             }
-            if (!user.score){
+            if (!user.score) {
                 user.score = [];
             }
             user.score.push({
@@ -92,7 +91,7 @@ const userController = {
     }
 
 
-    
+
 
 
 }
