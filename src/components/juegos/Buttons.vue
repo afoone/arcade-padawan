@@ -10,6 +10,7 @@ export default {
   methods: {
     reset() {
       bus.$emit("NewGame");
+      
     }
   }
 };

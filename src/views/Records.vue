@@ -10,7 +10,7 @@
           <tr>
             <th scope="col">Posición</th>
             <th scope="col">Usuario</th>
-            <th scope="col">Memory</th>
+            <th scope="col" v-on:click="ordenaMemory()">Memory</th>
             <th scope="col">Ahorcado</th>
             <th scope="col">Palabra</th>
           </tr>
@@ -55,11 +55,57 @@ export default {
   data() {
     return {
       usuarios: [],
+      memoryOrder: -1
     };
   },
   components: {},
   props: {},
-  methods: {},
+  methods: {
+    ordenaMemory() {
+      this.usuarios = this.usuarios.sort((a, b) => {
+        const memoryA = a.score.reduce((acc, act) => {
+          if (act.game === "Memory" && act.score > acc) {
+            return act.score;
+          } else {
+            return acc;
+          }
+        }, 0);
+
+        const memoryB = b.score.reduce((acc, act) => {
+          if (act.game === "Memory" && act.score > acc) {
+            return act.score;
+          } else {
+            return acc;
+          }
+        }, 0);
+
+        this.memoryOrder = this.memoryOrder * -1;
+        return (memoryA - memoryB) * this.memoryOrder;
+      });
+    },
+    ordenaPalabra() {
+      this.usuarios = this.usuarios.sort((a, b) => {
+        const palabraA = a.score.reduce((acc, act) => {
+          if (act.game === "Memory" && act.score > acc) {
+            return act.score;
+          } else {
+            return acc;
+          }
+        }, 0);
+
+        const palabraB = b.score.reduce((acc, act) => {
+          if (act.game === "Memory" && act.score > acc) {
+            return act.score;
+          } else {
+            return acc;
+          }
+        }, 0);
+
+        return palabraB - palabraA;
+      });
+    },
+    ordenaAhorcado() {},
+  },
   mounted() {
     axios.get("http://localhost:4000/api/user").then((res) => {
       this.usuarios = res.data;
