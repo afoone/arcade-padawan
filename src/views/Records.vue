@@ -125,14 +125,14 @@ export default {
 
         return (ahorcadoA - ahorcadoB) * this.ahorcadoOrder;
       });
-    },
+    }
   },
   mounted() {
-    axios.get("http://localhost:4000/api/user").then((res) => {
+    axios.get("http://localhost:4000/api/user").then(res => {
       this.usuarios = res.data;
       console.log(this.usuarios);
     });
-  },
+  }
 };
 </script>
 
