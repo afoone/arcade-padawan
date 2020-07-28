@@ -10,8 +10,8 @@
           <tr>
             <th scope="col">Posición</th>
             <th scope="col">Usuario</th>
-            <th scope="col">Ahorcado</th>
             <th scope="col">Memory</th>
+            <th scope="col">Ahorcado</th>
             <th scope="col">Palabra</th>
           </tr>
         </thead>
