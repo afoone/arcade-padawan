@@ -4,9 +4,15 @@
     <buttons />
     <puntuacion></puntuacion>
     <h1 v-if="finished">Enhorabuena!!!!!</h1>
-    <div class="board " v-bind:style="{ gridTemplateColumns: gridTemplate}">
+    <div class="board" v-bind:style="{ gridTemplateColumns: gridTemplate}">
       <div class="card" v-for="(item, index) in cards" :key="index" v-on:click="click(item)">
-        <img v-bind:src="item.image" v-if="mostrar(item)" height="100%" width="100%" v-on:click.stop />
+        <img
+          v-bind:src="item.image"
+          v-if="mostrar(item)"
+          height="100%"
+          width="100%"
+          v-on:click.stop
+        />
       </div>
     </div>
   </div>
@@ -22,20 +28,24 @@ import Buttons from "./Buttons";
 export default {
   components: {
     puntuacion,
-    buttons: Buttons
+    buttons: Buttons,
   },
   data() {
     return {
       cards: [],
       selectedOne: null,
-      selectedTwo: null
+      selectedTwo: null,
     };
   },
   props: {
     columns: {
       type: Number,
-      default: 4
-    }
+      default: 4,
+    },
+    movimientos: {
+      type: Number,
+      default: 0,
+    },
   },
   computed: {
     elements() {
@@ -43,12 +53,11 @@ export default {
     },
     finished() {
       return this.cards.reduce((acc, act) => acc && act.discovered, true);
-
     },
     //grid-template-columns: 3rem 3rem 3rem 3rem;
     gridTemplate() {
       return "repeat(" + this.columns + ", 3rem)";
-    }
+    },
   },
   methods: {
     click(item) {
@@ -65,7 +74,6 @@ export default {
         this.selectedOne = item;
         this.selectedTwo = null;
       }
-    
     },
     mostrar(item) {
       return (
@@ -82,20 +90,34 @@ export default {
       for (let i = 0; i < this.elements; i++) {
         this.cards.push({
           image: res.data[i].urls.thumb,
-          discovered: false
+          discovered: false,
         });
         this.cards.push({
           image: res.data[i].urls.thumb,
-          discovered: false
+          discovered: false,
         });
       }
       this.cards = _.shuffle(this.cards);
-    }
+    },
   },
   created() {
     this.createBoard();
-    bus.$on("NewGame", () => this.createBoard());
-  }
+    bus.$on("NewGame", () => {
+      this.createBoard();
+
+      axios
+        .put(
+          "http://localhost:4000/api/user/" +
+            localStorage.getItem("id") +
+            "/addScore",
+          { game: "Memory", score: this.movimientos }
+        )
+        .then((res) => {
+          console.log("updateado", res);
+        });
+    });
+    bus.$on("Movimiento", () => this.movimientos++);
+  },
 };
 </script>
 
