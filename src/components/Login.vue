@@ -10,13 +10,25 @@ import axios from 'axios';
       <form>
         <div class="form-group">
           <label for="exampleInputEmail1">Usuario</label>
-          <input type="text" class="form-control" id="usuario" v-model="user" placeholder="Usuario"/>
+          <input type="text" class="form-control" id="usuario" v-model="user" placeholder="Usuario" />
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" v-model="password" placeholder="Contraseña"/>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            v-model="password"
+            placeholder="Contraseña"
+          />
         </div>
-        <button type="submit" class="btn btn-secondary btn-lg" v-on:click.prevent="onSubmit()">Login</button>
+        <button
+          type="submit"
+          class="btn btn-secondary btn-lg active"
+          v-on:click.prevent="onSubmit()"
+        >
+          <router-link :to="'/'">Login</router-link>
+        </button>
       </form>
     </div>
   </div>
@@ -26,30 +38,24 @@ import axios from 'axios';
 import { login } from "../api/login";
 
 export default {
-
-    name: 'Login',
-    data() {
-      return {
-        user: "",
-        password: ""
-      }
+  name: "Login",
+  data() {
+    return {
+      user: "",
+      password: "",
+    };
+  },
+  methods: {
+    onSubmit() {
+      console.log(login());
+      login(this.user, this.password).then((res) => {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("name", res.data.name);
+        localStorage.setItem("id", res.data.id);
+      });
     },
-      methods:{
-        onSubmit() {
-          console.log(login());
-          login(this.user, this.password).then(res=>
-          {
-            localStorage.setItem("token", res.data.token);
-            localStorage.setItem("name", res.data.name);
-            localStorage.setItem("id", res.data.id);
-          }
-          )
-        }
-    }
-  }
-  
-  
-
+  },
+};
 </script>
 
 <style scoped>
@@ -68,5 +74,18 @@ label {
 }
 input {
   margin: 10px 0px 10px 0px;
+}
+
+button {
+  height: 50px;
+}
+
+router-link {
+  color: white;
+}
+a {
+  color: #e9ecef;
+  text-decoration: underline;
+  box-shadow: 7px 5px rgb(126, 20, 20);
 }
 </style>
