@@ -1,26 +1,30 @@
 
 <template>
   <div class="input-group mb-3">
-    <input
-      type="text"
-      class="form-control"
-      aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-default"
-      v-model="palabra"
-      v-on:keyup.enter="addPalabra"
-    />
-    <button class="btn btn-primary" type="button" v-on:click="addPalabra">Añadir</button>
+    <div class="container">
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default"
+        v-model="palabra"
+        v-on:keyup.enter="addPalabra"
+        
+      />
+      <div>
+        <button class="btn btn-primary" type="button" v-on:click="addPalabra" >Añadir</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
+import axios from "axios";
 
 export default {
   data() {
     return {
-      palabra: ""
+      palabra:""
     };
   },
   props: ["palabras", "estado"],
@@ -37,22 +41,30 @@ export default {
           this.estado.error =
             "Has fallado. Puntuación total: " + this.palabras.length;
           console.log(localStorage.id);
-          axios.put("http://localhost:4000/api/user/" + localStorage.getItem("id")
-            + "/addScore", { 
-                score: this.palabras.length, 
-                game: "Palabras"
-              })
+          axios.put(
+            "http://localhost:4000/api/user/" +
+              localStorage.getItem("id") +
+              "/addScore",
+            {
+              score: this.palabras.length,
+              game: "Palabras",
+            }
+          );
+        
           this.estado.comenzado = false;
           this.palabras.length = 0;
           return;
+
         }
       }
       this.palabras.push(this.palabra);
       this.palabra = "";
-    }
-  }
+    },
+    
+  },
 };
 </script>
 
-<style>
+<style scoped>
+
 </style>

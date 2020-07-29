@@ -5,7 +5,7 @@
       <div class="alert alert-danger" role="alert" v-if="estado.error">{{estado.error}}</div>
       <button
         type="button"
-        class="btn btn-primary btn-lg btn-block"
+        class="btn btn-primary btn-lg btn-block centrar"
         v-on:click="estado.comenzado = true"
       >Comenzar</button>
     </template>
@@ -40,4 +40,7 @@ export default {
 </script>
 
 <style scoped>
+button {
+  height: 50px;
+}
 </style>
