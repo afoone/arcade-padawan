@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="alert alert-success" role="alert">Victorias: {{victorias}}</div>
+    <div class="alert alert-success margen" role="alert">Victorias: {{victorias}}</div>
     <div class="alert alert-danger" role="alert">Derrotas: {{derrotas}}</div>
   </div>
 </template>
@@ -26,5 +26,8 @@ export default {
 };
 </script>
 
-<style>
+<style scope>
+.margen {
+  margin-top: 2rem;
+}
 </style>

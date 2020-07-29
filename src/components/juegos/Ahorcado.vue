@@ -1,6 +1,9 @@
 <template>
-  <div class="ahorcado-container">
-    <h1>Ahorcado</h1>
+  <div class="ahorcado-container container">
+    
+    <div class="bg-1">
+      <h1 class="t-stroke t-shadow">Ahorcado</h1>
+    </div>
     <contadorVictorias :record="victorias" />
     <vidas />
     <palabra :palabra="palabra" />
@@ -80,5 +83,22 @@ button {
   height: 2rem;
   width: 13rem;
   text-align: center;
+}
+.bg-1{
+   background: linear-gradient(to right, rgb(97, 67, 133), rgb(81, 99, 149));
+   height: 30vh;
+   padding-top: 50px;
+}
+
+.t-stroke {
+  color: transparent;
+  -moz-text-stroke-width: 2px;
+  -webkit-text-stroke-width: 2px;
+  -moz-text-stroke-color: #000000;
+  -webkit-text-stroke-color: #ffffff;
+}
+
+.t-shadow {
+  text-shadow: 7px 7px #8dffcd;
 }
 </style>

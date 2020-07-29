@@ -1,6 +1,8 @@
 <template>
   <div class="memory-game">
-    <h1>Memory Game</h1>
+    <div class="bg-1 container">
+      <h1 class="t-stroke t-shadow">Memory Game</h1>
+    </div>
     <buttons />
     <puntuacion></puntuacion>
     <h1 v-if="finished">Enhorabuena!!!!!</h1>
