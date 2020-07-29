@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <h1>Elige las palabras</h1>
+    <div class="bg-1">
+      <h1 class="t-stroke t-shadow">Elige las palabras</h1>
+    </div>
     <template v-if="!estado.comenzado">
       <div class="alert alert-danger" role="alert" v-if="estado.error">{{estado.error}}</div>
       <button
@@ -25,17 +27,17 @@ import AddPalabra from "./AddPalabra";
 export default {
   components: {
     listaPalabras: ListaPalabras,
-    addPalabra: AddPalabra
+    addPalabra: AddPalabra,
   },
   data() {
     return {
       palabras: [],
       estado: {
         comenzado: false,
-        error: null
-      }
+        error: null,
+      },
     };
-  }
+  },
 };
 </script>
 
@@ -43,4 +45,23 @@ export default {
 button {
   height: 50px;
 }
+
+.bg-1{
+   background: linear-gradient(to right, rgb(97, 67, 133), rgb(81, 99, 149));
+   height: 30vh;
+   padding-top: 50px;
+}
+
+.t-stroke {
+  color: transparent;
+  -moz-text-stroke-width: 2px;
+  -webkit-text-stroke-width: 2px;
+  -moz-text-stroke-color: #000000;
+  -webkit-text-stroke-color: #ffffff;
+}
+
+.t-shadow {
+  text-shadow: 7px 7px #8dffcd;
+}
+
 </style>
