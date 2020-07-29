@@ -2,6 +2,7 @@
 <template>
   <div class="input-group mb-3">
     <input
+      id="word"
       type="text"
       class="form-control"
       aria-label="Sizing example input"
@@ -27,6 +28,7 @@ export default {
   methods: {
     addPalabra() {
       console.log(this.palabra);
+      document.getElementById("word").focus();
       if (this.palabras.length > 0) {
         const ultimaPalabra = this.palabras[this.palabras.length - 1];
         if (
