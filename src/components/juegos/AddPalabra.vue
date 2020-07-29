@@ -1,6 +1,8 @@
 
 <template>
+
   <div class="input-group mb-3">
+    <div class="container">
     <input
       id="word"
       type="text"
@@ -11,6 +13,7 @@
       v-on:keyup.enter="addPalabra"
     />
     <button class="btn btn-primary" type="button" v-on:click="addPalabra">Añadir</button>
+    </div>
   </div>
 </template>
 
