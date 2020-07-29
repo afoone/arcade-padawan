@@ -31,7 +31,9 @@
       />
     </div>
 
-    <button type="submit" class="btn btn-primary" v-on:click.prevent="grabar()">Grabar</button>
+    <button type="submit" class="btn btn-primary" v-on:click.prevent="grabar()">
+      <router-link :to="'/'">Grabar</router-link>
+    </button>
   </div>
 </template>
 
@@ -44,7 +46,7 @@ export default {
       id: null,
       nombre: "",
       nickName: "",
-      password: ""
+      password: "",
     };
   },
   props: {},
@@ -53,25 +55,25 @@ export default {
       const user = {
         name: this.nombre,
         nickName: this.nickName,
-        password: this.password
+        password: this.password,
       };
       if (this.id == null) {
-        axios.post("http://localhost:4000/api/user", user).then(res => {
+        axios.post("http://localhost:4000/api/user", user).then((res) => {
           console.log(res);
         });
       } else {
         axios
           .put("http://localhost:4000/api/user/" + this.id, user)
-          .then(res => {
+          .then((res) => {
             console.log("updateado", res);
           });
       }
-    }
+    },
   },
   mounted() {
     this.id = this.$route.params.id;
     if (this.id) {
-      axios.get("http://localhost:4000/api/user/" + this.id).then(res => {
+      axios.get("http://localhost:4000/api/user/" + this.id).then((res) => {
         console.log(res.data);
         this.nombre = res.data.name;
         this.nickName = res.data.nickName;
@@ -79,12 +81,16 @@ export default {
       });
     }
   },
-  computed: {}
+  computed: {},
 };
 </script>
 
 <style>
 .enlaces a {
   display: block;
+}
+
+a {
+  color: white;
 }
 </style>
